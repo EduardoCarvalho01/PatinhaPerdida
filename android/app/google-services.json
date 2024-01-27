@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "38292503268",
+    "firebase_url": "https://perdiapatinha-default-rtdb.firebaseio.com",
+    "project_id": "perdiapatinha",
+    "storage_bucket": "perdiapatinha.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38292503268:android:e20f22706d49d2ac174af1",
+        "android_client_info": {
+          "package_name": "br.ifpr.patinhaperdida"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCPvdvX6rR1j-gpsMIIpk2ZxPNSgj8h6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
