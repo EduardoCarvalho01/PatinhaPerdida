@@ -102,8 +102,9 @@ class _FeedPageState extends State<FeedPage> {
             String imageUrl = post['imageUrl'] ?? '';
             String corPelagem = post['corPelagem'] ?? 'Não especificada';
             bool animalDocil = post['animalDocil'] ?? false;
-            String userId = post['userId'] ?? '';
+            String nomeUsuario = post['userName'] ?? '';
             String dataString = '';
+            String localizacao = post['endereco'];
 
             if (post['data'] is Timestamp) {
               Timestamp timestamp = post['data'];
@@ -122,9 +123,9 @@ class _FeedPageState extends State<FeedPage> {
                     builder: (context) => DetalhesPostPage(
                       imageUrl: imageUrl,
                       corPelagem: corPelagem,
-                      userName: _userName.isNotEmpty ? _userName : userId,
+                      userName: nomeUsuario,
                       animalDocil: animalDocil,
-                      localizacao: post['endereco'],
+                      localizacao: localizacao,
                       data: dataString,
                     ),
                   ),
@@ -137,11 +138,15 @@ class _FeedPageState extends State<FeedPage> {
                   children: [
                     ListTile(
                       title: Text(
-                          'Nome do Usuário: ${_userName.isNotEmpty ? _userName : userId}'),
+                          'Nome do Usuário: $nomeUsuario'),
                       subtitle: Text('Data: $dataString'),
                       leading: imageUrl.isNotEmpty
                           ? Image.network(imageUrl)
                           : Icon(Icons.image_not_supported, size: 50),
+                    ),
+                     Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('Local: $localizacao'),
                     ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
