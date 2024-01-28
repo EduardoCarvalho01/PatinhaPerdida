@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:patinhaperdida/screens/homePage.dart';
 import 'FeedPage.dart';
 import 'registerPage.dart';
 
@@ -12,6 +13,30 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String? _erro;
+
+  Future<void> _login() async {
+    final navigator = Navigator.of(context);
+
+    try {
+      final credential = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      if (credential.user != null) {
+        navigator.pushReplacement(
+          MaterialPageRoute(
+            builder: (context) =>  FeedPage(),
+          ),
+        );
+      }
+    } catch (e) {
+      setState(() {
+        _erro = "E-mail ou Senha incorreta.";
+      });
+      print("Erro de Login: $e");
+    }
+  }
 
   Future<void> _signInWithEmailAndPassword(BuildContext context) async {
     try {
@@ -21,7 +46,8 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       // Se o login for bem-sucedido, navegue para a FeedPage
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FeedPage()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => FeedPage()));
     } catch (e) {
       // Lide com erros de autenticação aqui
       print("Erro de Login: $e");
@@ -52,16 +78,22 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 32.0),
             ElevatedButton(
-              onPressed: () => _signInWithEmailAndPassword(context),
+              onPressed: _login,
               child: Text('Login'),
             ),
             SizedBox(height: 16.0),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => RegisterPage()));
               },
               child: Text('Criar conta'),
             ),
+            if (_erro != null)
+              Text(
+                _erro!,
+                style: TextStyle(color: Colors.red),
+              ),
           ],
         ),
       ),
