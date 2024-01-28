@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'RegisterPage.dart';
+import 'FeedPage.dart'; // Importe a FeedPage
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'PatinhaPerdida - Home',
-            style: TextStyle(
-                color: Colors
-                    .white), // Adicione esta linha para definir a cor do texto
-          ),
-        ),
-        backgroundColor: Colors
-            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
+        title: Text('PatinhaPerdida - Home'),
       ),
       body: Center(
         child: Column(
@@ -38,6 +30,14 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => RegisterPage()));
               },
               child: Text('Registrar'),
+            ),
+            SizedBox(height: 16.0), // Adicione um espaçamento entre os botões
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FeedPage()));
+              },
+              child: Text('Feed de Notícias'),
             ),
           ],
         ),
