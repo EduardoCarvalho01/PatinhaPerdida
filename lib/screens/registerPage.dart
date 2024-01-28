@@ -17,9 +17,30 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   Future<void> _registerWithEmailAndPassword() async {
+    // Verificar se algum campo está vazio
+    if (_nameController.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _passwordController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Erro de Registro'),
+          content: Text('Por favor, preencha todos os campos.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
     try {
       // Registra o usuário com e-mail e senha
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
@@ -33,7 +54,8 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       // Navega para a próxima tela após o registro bem-sucedido
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FeedPage()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => FeedPage()));
     } catch (e) {
       print("Erro de Registro: $e");
     }
