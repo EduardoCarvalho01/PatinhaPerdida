@@ -35,7 +35,7 @@ class _FeedPageState extends State<FeedPage> {
       try {
         DocumentSnapshot userDoc = await FirebaseFirestore.instance
             .collection('users')
-            .doc('name')
+            .doc(_user.uid)
             .get();
         if (userDoc.exists) {
           setState(() {
@@ -54,14 +54,19 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user.displayName ?? "Nome do Usuário"}'),
+        title: Text(
+            'Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user.displayName ?? "Nome do Usuário"}'),
       ),
       body: _buildFeedList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CadastroPostPage(userName: _userName.isNotEmpty ? _userName : _user.displayName ?? '')),
+            MaterialPageRoute(
+                builder: (context) => CadastroPostPage(
+                    userName: _userName.isNotEmpty
+                        ? _userName
+                        : _user.displayName ?? '')),
           );
         },
         child: Icon(Icons.add),
@@ -95,7 +100,8 @@ class _FeedPageState extends State<FeedPage> {
             if (post['data'] is Timestamp) {
               Timestamp timestamp = post['data'];
               DateTime dateTime = timestamp.toDate();
-              dataString = "${dateTime.day.toString().padLeft(2, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.year.toString()}";
+              dataString =
+                  "${dateTime.day.toString().padLeft(2, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.year.toString()}";
             } else {
               dataString = post['data'] ?? '';
             }
@@ -122,7 +128,8 @@ class _FeedPageState extends State<FeedPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
-                      title: Text('Nome do Usuário: ${_userName.isNotEmpty ? _userName : userId}'),
+                      title: Text(
+                          'Nome do Usuário: ${_userName.isNotEmpty ? _userName : userId}'),
                       subtitle: Text('Data: $dataString'),
                       leading: imageUrl.isNotEmpty
                           ? Image.network(imageUrl)
@@ -134,7 +141,8 @@ class _FeedPageState extends State<FeedPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('Animal Dócil: ${animalDocil ? 'Sim' : 'Não'}'),
+                      child:
+                          Text('Animal Dócil: ${animalDocil ? 'Sim' : 'Não'}'),
                     ),
                   ],
                 ),
