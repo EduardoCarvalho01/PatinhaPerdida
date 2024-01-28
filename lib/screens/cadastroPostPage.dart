@@ -50,8 +50,8 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
 
   Future<void> _getCurrentLocation() async {
     try {
-      Position position =
-      await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
       setState(() {
         _currentPosition = position;
       });
@@ -102,12 +102,14 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
   Future<void> _saveDataToFirebase() async {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
-      firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+      firebase_storage.FirebaseStorage storage =
+          firebase_storage.FirebaseStorage.instance;
 
       // Upload da imagem para o Firebase Storage
       if (_pickedImage != null) {
-        firebase_storage.UploadTask task =
-        storage.ref('images/${DateTime.now().toString()}.jpg').putFile(File(_pickedImage!.path));
+        firebase_storage.UploadTask task = storage
+            .ref('images/${DateTime.now().toString()}.jpg')
+            .putFile(File(_pickedImage!.path));
         await task.whenComplete(() => null);
 
         // Obtém a URL da imagem no Firebase Storage
@@ -149,7 +151,8 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Dados salvos com sucesso no Firebase Firestore e Firebase Storage!'),
+          content: Text(
+              'Dados salvos com sucesso no Firebase Firestore e Firebase Storage!'),
         ),
       );
     } catch (error) {
@@ -160,15 +163,15 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
   Widget _buildImagePreview() {
     return _pickedImage != null
         ? Container(
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: FileImage(File(_pickedImage!.path)),
-          fit: BoxFit.cover,
-        ),
-      ),
-    )
+            height: 200,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: FileImage(File(_pickedImage!.path)),
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
         : Container();
   }
 
@@ -177,7 +180,16 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
     _checkLocationPermission();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Post'),
+        title: const Center(
+          child: Text(
+            'PatinhaPerdida - Cadastro do Post',
+            style: TextStyle(
+                color: Colors
+                    .white), // Adicione esta linha para definir a cor do texto
+          ),
+        ),
+        backgroundColor: Colors
+            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -229,9 +241,9 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
                 },
                 items: Porte.values
                     .map((value) => DropdownMenuItem(
-                  value: value,
-                  child: Text(value.toString().split('.').last),
-                ))
+                          value: value,
+                          child: Text(value.toString().split('.').last),
+                        ))
                     .toList(),
                 decoration: InputDecoration(labelText: 'Porte'),
               ),
@@ -257,13 +269,14 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
               ),
               apresentaMachucado
                   ? TextField(
-                onChanged: (value) {
-                  setState(() {
-                    descricaoMachucado = value;
-                  });
-                },
-                decoration: InputDecoration(labelText: 'Descrição do Machucado'),
-              )
+                      onChanged: (value) {
+                        setState(() {
+                          descricaoMachucado = value;
+                        });
+                      },
+                      decoration:
+                          InputDecoration(labelText: 'Descrição do Machucado'),
+                    )
                   : Container(),
               SizedBox(height: 16.0),
               ElevatedButton(
@@ -271,7 +284,8 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
                 child: Text('Obter Localização'),
               ),
               _currentPosition != null
-                  ? Text('Localização: ${_currentPosition!.latitude}, ${_currentPosition!.longitude}')
+                  ? Text(
+                      'Localização: ${_currentPosition!.latitude}, ${_currentPosition!.longitude}')
                   : Container(),
               _address != null ? Text('Endereço: $_address') : Container(),
               SizedBox(height: 16.0),
@@ -313,7 +327,8 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
               ElevatedButton(
                 onPressed: () {
                   _saveDataToFirebase(); // Chamada para salvar dados no Firebase Firestore
-                  Navigator.pop(context); // Volta para a tela anterior após salvar
+                  Navigator.pop(
+                      context); // Volta para a tela anterior após salvar
                 },
                 child: Text('Salvar'),
               ),

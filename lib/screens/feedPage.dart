@@ -54,8 +54,16 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            'Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user.displayName ?? "Nome do Usuário"}'),
+        title: Center(
+          child: Text(
+            'Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user.displayName ?? "Nome do Usuário"}',
+            style: TextStyle(
+                color: Colors
+                    .white), // Adicione esta linha para definir a cor do texto
+          ),
+        ),
+        backgroundColor: Colors
+            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
       ),
       body: _buildFeedList(),
       floatingActionButton: FloatingActionButton(

@@ -65,7 +65,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PatinhaPerdida - Registro'),
+        title: const Center(
+          child: Text(
+            'PatinhaPerdida - Registro',
+            style: TextStyle(
+                color: Colors
+                    .white), // Adicione esta linha para definir a cor do texto
+          ),
+        ),
+        backgroundColor: Colors
+            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       if (credential.user != null) {
         navigator.pushReplacement(
           MaterialPageRoute(
-            builder: (context) =>  FeedPage(),
+            builder: (context) => FeedPage(),
           ),
         );
       }
@@ -58,7 +58,16 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PatinhaPerdida - Login'),
+        title: const Center(
+          child: Text(
+            'PatinhaPerdida - Login',
+            style: TextStyle(
+                color: Colors
+                    .white), // Adicione esta linha para definir a cor do texto
+          ),
+        ),
+        backgroundColor: Colors
+            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

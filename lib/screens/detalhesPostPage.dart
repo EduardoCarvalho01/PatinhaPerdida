@@ -22,7 +22,16 @@ class DetalhesPostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes do Post!'),
+        title: const Center(
+          child: Text(
+            'PatinhaPerdida - Detalhes',
+            style: TextStyle(
+                color: Colors
+                    .white), // Adicione esta linha para definir a cor do texto
+          ),
+        ),
+        backgroundColor: Colors
+            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
