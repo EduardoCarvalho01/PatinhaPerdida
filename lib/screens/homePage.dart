@@ -10,34 +10,47 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PatinhaPerdida - Home'),
+        title: const Center(
+          child: Text(
+            'PatinhaPerdida - Home',
+            style: TextStyle(
+                color: Colors
+                    .black), // Adicione esta linha para definir a cor do texto
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 134, 195,
+            245), // Adicione esta linha para definir a cor do fundo do AppBar
       ),
+      backgroundColor: Colors.lightGreen[100],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              child: Text('Login'),
+              icon: Icon(Icons.login), // Ícone de Login
+              label: Text('Login'),
             ),
             SizedBox(height: 16.0),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => RegisterPage()));
               },
-              child: Text('Registrar'),
+              icon: Icon(Icons.person_add), // Ícone de Registrar
+              label: Text('Registrar'),
             ),
             SizedBox(height: 16.0), // Adicione um espaçamento entre os botões
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => FeedPage()));
               },
-              child: Text('Feed de Notícias'),
+              icon: Icon(Icons.feed), // Ícone de Feed de Notícias
+              label: Text('Feed de Notícias'),
             ),
           ],
         ),

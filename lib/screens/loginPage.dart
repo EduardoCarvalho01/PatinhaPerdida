@@ -69,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors
             .blue, // Adicione esta linha para definir a cor do fundo do AppBar
       ),
+      backgroundColor: Colors.lightGreen[100],
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

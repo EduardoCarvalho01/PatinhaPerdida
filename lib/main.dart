@@ -1,24 +1,17 @@
-
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:patinhaperdida/screens/homePage.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-      options:  const FirebaseOptions(
+      options: const FirebaseOptions(
           apiKey: 'AIzaSyBCPvdvX6rR1j-gpsMIIpk2ZxPNSgj8h6M',
           appId: '1:38292503268:android:f427c074023245ec174af1',
           messagingSenderId: '38292503268',
           projectId: 'perdiapatinha',
-          storageBucket: 'perdiapatinha.appspot.com'
-      )
-
-
-  );
+          storageBucket: 'perdiapatinha.appspot.com'));
 
   runApp(const MyApp());
 }
