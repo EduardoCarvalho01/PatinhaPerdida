@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class DetalhesPostPage extends StatelessWidget {
   final String imageUrl;
@@ -9,7 +8,6 @@ class DetalhesPostPage extends StatelessWidget {
   final String localizacao;
   final String data;
 
-  // Modifica o construtor para aceitar um bool e convertê-lo para uma string
   DetalhesPostPage({
     required this.imageUrl,
     required this.corPelagem,
@@ -23,27 +21,23 @@ class DetalhesPostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'PatinhaPerdida - Detalhes',
-            style: TextStyle(
-                color: Colors
-                    .white), // Adicione esta linha para definir a cor do texto
-          ),
-        ),
-        backgroundColor: Colors
-            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
+        title: Text('Detalhes do Post'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildDetailItem('ImageUrl:', imageUrl),
+            imageUrl.isNotEmpty
+                ? Image.network(
+                    imageUrl,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  )
+                : Icon(Icons.image_not_supported, size: 50),
             _buildDetailItem('Cor da Pelagem:', corPelagem),
             _buildDetailItem('Nome do Usuário:', userName),
-            // Converte o valor booleano em uma string antes de passá-lo
-            _buildDetailItem('Animal Docil:', animalDocil.toString()),
+            _buildDetailItem('Animal Docil:', animalDocil ? 'Sim' : 'Não'),
             _buildDetailItem('Localização:', localizacao),
             _buildDetailItem('Data:', data),
           ],
