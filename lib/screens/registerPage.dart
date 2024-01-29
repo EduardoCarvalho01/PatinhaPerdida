@@ -24,8 +24,8 @@ class _RegisterPageState extends State<RegisterPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Erro de Registro'),
-          content: Text('Por favor, preencha todos os campos.'),
+          title: Text('ERRO DE REGISTRO'),
+          content: Text('Por favor, preencha todos os campo!.'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -83,24 +83,34 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: 'Nome'),
+              decoration: InputDecoration(
+                labelText: 'Nome',
+                prefixIcon: Icon(Icons.abc),
+              ),
             ),
             SizedBox(height: 16.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                prefixIcon: Icon(Icons.email),
+              ),
               keyboardType: TextInputType.emailAddress,
             ),
             SizedBox(height: 16.0),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                prefixIcon: Icon(Icons.password_outlined),
+              ),
               obscureText: true,
             ),
             SizedBox(height: 32.0),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: _registerWithEmailAndPassword,
-              child: Text('Registrar'),
+              icon: Icon(Icons.check),
+              label: Text('Registrar'),
             ),
           ],
         ),
