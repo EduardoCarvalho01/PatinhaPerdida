@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               icon: Icon(Icons.login), // Ícone de Login
-              label: Text('Login'),
+              label: Text('Login '),
             ),
             ElevatedButton.icon(
               onPressed: () {
