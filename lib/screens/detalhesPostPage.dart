@@ -39,7 +39,6 @@ class DetalhesPostPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             _buildDetailItem('ImageUrl:', imageUrl),
             _buildDetailItem('Cor da Pelagem:', corPelagem),
             _buildDetailItem('Nome do Usuário:', userName),
@@ -47,7 +46,6 @@ class DetalhesPostPage extends StatelessWidget {
             _buildDetailItem('Animal Docil:', animalDocil.toString()),
             _buildDetailItem('Localização:', localizacao),
             _buildDetailItem('Data:', data),
-          
           ],
         ),
       ),
