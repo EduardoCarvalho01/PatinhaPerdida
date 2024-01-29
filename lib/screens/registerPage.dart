@@ -67,14 +67,11 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'PatinhaPerdida - Registro',
-            style: TextStyle(
-                color: Colors
-                    .white), // Adicione esta linha para definir a cor do texto
+            'PatinhaPerdida - Cadastro',
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        backgroundColor: Colors
-            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
+        backgroundColor: Color.fromARGB(255, 134, 195, 245),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

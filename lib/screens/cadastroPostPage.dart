@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
@@ -182,14 +181,11 @@ class _CadastroPostPageState extends State<CadastroPostPage> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'PatinhaPerdida - Cadastro do Post',
-            style: TextStyle(
-                color: Colors
-                    .white), // Adicione esta linha para definir a cor do texto
+            'Cadastro do Post',
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        backgroundColor: Colors
-            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
+        backgroundColor: Color.fromARGB(255, 134, 195, 245),
       ),
       body: SingleChildScrollView(
         child: Padding(

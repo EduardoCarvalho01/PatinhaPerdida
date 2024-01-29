@@ -21,7 +21,13 @@ class DetalhesPostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes do Post'),
+        title: const Center(
+          child: Text(
+            'Detalhes do Post',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 134, 195, 245),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

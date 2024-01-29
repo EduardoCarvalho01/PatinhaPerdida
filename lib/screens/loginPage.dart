@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:patinhaperdida/screens/homePage.dart';
 import 'FeedPage.dart';
 import 'registerPage.dart';
 
@@ -61,13 +60,10 @@ class _LoginPageState extends State<LoginPage> {
         title: const Center(
           child: Text(
             'PatinhaPerdida - Login',
-            style: TextStyle(
-                color: Colors
-                    .white), // Adicione esta linha para definir a cor do texto
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        backgroundColor: Colors
-            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
+        backgroundColor: Color.fromARGB(255, 134, 195, 245),
       ),
       backgroundColor: Colors.lightGreen[100],
       body: Padding(
