@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'FeedPage.dart';
 import 'LoginPage.dart';
-import 'RegisterPage.dart';
-import 'FeedPage.dart'; // Importe a FeedPage
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +13,10 @@ class HomePage extends StatelessWidget {
         title: const Center(
           child: Text(
             'PatinhaPerdida - Home',
-            style: TextStyle(
-                color: Colors
-                    .black), // Adicione esta linha para definir a cor do texto
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 134, 195,
-            245), // Adicione esta linha para definir a cor do fundo do AppBar
+        backgroundColor: Color.fromARGB(255, 134, 195, 245),
       ),
       backgroundColor: Colors.lightGreen[100],
       body: Center(
@@ -28,29 +25,33 @@ class HomePage extends StatelessWidget {
           children: [
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
               },
               icon: Icon(Icons.login), // Ícone de Login
               label: Text('Login'),
             ),
-            SizedBox(height: 16.0),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
               },
               icon: Icon(Icons.person_add), // Ícone de Registrar
               label: Text('Registrar'),
             ),
-            SizedBox(height: 16.0), // Adicione um espaçamento entre os botões
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FeedPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FeedPage()),
+                );
               },
               icon: Icon(Icons.feed), // Ícone de Feed de Notícias
-              label: Text('Feed de Notícias'),
+              label: Text('Visitante'),
             ),
           ],
         ),
