@@ -77,27 +77,36 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(
+                  labelText: 'E-mail', prefixIcon: Icon(Icons.email)),
               keyboardType: TextInputType.emailAddress,
             ),
             SizedBox(height: 16.0),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                prefixIcon: Icon(Icons.password),
+              ),
               obscureText: true,
             ),
             SizedBox(height: 32.0),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: _login,
-              child: Text('Login'),
+              icon: Icon(Icons.login), // Ícone de login
+              label: Text('Login'),
             ),
             SizedBox(height: 16.0),
-            TextButton(
+            TextButton.icon(
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterPage()),
+                );
               },
-              child: Text('Criar conta'),
+              icon: Icon(Icons
+                  .person_add), // Ícone de adicionar pessoa (representando criar conta)
+              label: Text('Criar conta'),
             ),
             if (_erro != null)
               Text(
