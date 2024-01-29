@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'CadastroPostPage.dart';
-import 'DetalhesPostPage.dart'; // Importe a tela de detalhes do post
+import 'DetalhesPostPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FeedPage extends StatefulWidget {
@@ -11,7 +11,7 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  late User _user;
+  User? _user;
   String _userName = '';
 
   @override
@@ -35,7 +35,7 @@ class _FeedPageState extends State<FeedPage> {
       try {
         DocumentSnapshot userDoc = await FirebaseFirestore.instance
             .collection('users')
-            .doc(_user.uid)
+            .doc(_user!.uid)
             .get();
         if (userDoc.exists) {
           setState(() {
@@ -56,29 +56,30 @@ class _FeedPageState extends State<FeedPage> {
       appBar: AppBar(
         title: Center(
           child: Text(
-            'Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user.displayName ?? "Nome do Usuário"}',
+            'Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user?.displayName ?? "Visitante"}',
             style: TextStyle(
-                color: Colors
-                    .white), // Adicione esta linha para definir a cor do texto
-          ),
+              color: Colors.white,
+            ),
+          ),          
         ),
-        backgroundColor: Colors
-            .blue, // Adicione esta linha para definir a cor do fundo do AppBar
+        backgroundColor: Colors.blue,
       ),
       body: _buildFeedList(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CadastroPostPage(
-                    userName: _userName.isNotEmpty
-                        ? _userName
-                        : _user.displayName ?? '')),
-          );
-        },
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: _user != null
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CadastroPostPage(
+                      userName: _userName.isNotEmpty ? _userName : _user?.displayName ?? '',
+                    ),
+                  ),
+                );
+              },
+              child: Icon(Icons.add),
+            )
+          : null,
     );
   }
 
@@ -109,61 +110,62 @@ class _FeedPageState extends State<FeedPage> {
             if (post['data'] is Timestamp) {
               Timestamp timestamp = post['data'];
               DateTime dateTime = timestamp.toDate();
-              dataString =
-                  "${dateTime.day.toString().padLeft(2, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.year.toString()}";
+              dataString = "${dateTime.day.toString().padLeft(2, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.year.toString()}";
             } else {
               dataString = post['data'] ?? '';
             }
 
             return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetalhesPostPage(
-                      imageUrl: imageUrl,
-                      corPelagem: corPelagem,
-                      userName: nomeUsuario,
-                      animalDocil: animalDocil,
-                      localizacao: localizacao,
-                      data: dataString,
-                    ),
-                  ),
-                );
-              },
-              child: Card(
-                margin: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListTile(
-                      title: Text(
-                          'Nome do Usuário: $nomeUsuario'),
-                      subtitle: Text('Data: $dataString'),
-                      leading: imageUrl.isNotEmpty
-                          ? Image.network(imageUrl)
-                          : Icon(Icons.image_not_supported, size: 50),
-                    ),
-                     Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Local: $localizacao'),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Cor da Pelagem: $corPelagem'),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child:
-                          Text('Animal Dócil: ${animalDocil ? 'Sim' : 'Não'}'),
-                    ),
-                  ],
-                ),
-              ),
-            );
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetalhesPostPage(
+          imageUrl: imageUrl,
+          corPelagem: corPelagem,
+          userName: nomeUsuario,
+          animalDocil: animalDocil,
+          localizacao: localizacao,
+          data: dataString,
+        ),
+      ),
+    );
+  },
+  child: Card(
+    margin: EdgeInsets.all(8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ListTile(
+          title: Text(
+            'Nome do Usuário: $nomeUsuario',
+          ), 
+          subtitle: Text('Data: $dataString'),
+          leading: imageUrl.isNotEmpty
+              ? Image.network(imageUrl)
+              : Icon(Icons.image_not_supported, size: 50),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Local: $localizacao'),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Cor da Pelagem: $corPelagem'),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Animal Dócil: ${animalDocil ? 'Sim' : 'Não'}'),
+        ),
+      ],
+    ),
+  ),
+);
+
           },
         );
       },
     );
   }
 }
+
