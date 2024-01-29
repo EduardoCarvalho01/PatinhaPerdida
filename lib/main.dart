@@ -13,6 +13,13 @@ void main() async {
           projectId: 'perdiapatinha',
           storageBucket: 'perdiapatinha.appspot.com'));
 
+  const FirebaseOptions ios = FirebaseOptions(
+      apiKey: "AIzaSyA1vYrN1qZwuRylurCrRO0QQrbAnKBnp5Y",
+      appId: "1:38292503268:ios:b79f7e883e161e53174af1",
+      messagingSenderId: "38292503268",
+      projectId: "perdiapatinha",
+      storageBucket: "perdiapatinha.appspot.com");
+
   runApp(const MyApp());
 }
 
