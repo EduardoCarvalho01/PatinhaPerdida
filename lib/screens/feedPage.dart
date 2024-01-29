@@ -42,7 +42,7 @@ class _FeedPageState extends State<FeedPage> {
             _userName = userDoc['name'];
           });
         } else {
-          print('Documento de usuário não encontrado no Firestore');
+          print('Documento de usuário não encontrado no Firestore!');
         }
       } catch (error) {
         print('Erro ao obter dados do usuário: $error');
