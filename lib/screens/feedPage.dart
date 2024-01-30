@@ -61,6 +61,7 @@ class _FeedPageState extends State<FeedPage> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 134, 195, 245),
+        actions: _buildAppBarActions(),
       ),
       body: _buildFeedList(),
       floatingActionButton: _user != null
@@ -81,6 +82,24 @@ class _FeedPageState extends State<FeedPage> {
             )
           : null,
     );
+  }
+
+  List<Widget> _buildAppBarActions() {
+    if (_user != null) {
+      return [
+        // Botão "Deslogar"
+        IconButton(
+          icon: Icon(Icons.logout),
+          onPressed: () async {
+            await _auth.signOut();
+            Navigator.of(context)
+                .popUntil((route) => route.isFirst); // Sai do aplicativo
+          },
+        ),
+      ];
+    } else {
+      return [];
+    }
   }
 
   Widget _buildFeedList() {

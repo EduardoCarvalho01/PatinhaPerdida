@@ -44,11 +44,11 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
       );
 
-      // Se o login for bem-sucedido, navegue para a FeedPage
+   
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => FeedPage()));
     } catch (e) {
-      // Lide com erros de autenticação aqui
+
       print("Erro de Login: $e");
     }
   }
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 32.0),
             ElevatedButton.icon(
               onPressed: _login,
-              icon: Icon(Icons.login), // Ícone de login
+              icon: Icon(Icons.login), 
               label: Text('Login'),
             ),
             SizedBox(height: 16.0),
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                 );
               },
               icon: Icon(Icons
-                  .person_add), // Ícone de adicionar pessoa (representando criar conta)
+                  .person_add), 
               label: Text('Criar conta'),
             ),
             if (_erro != null)

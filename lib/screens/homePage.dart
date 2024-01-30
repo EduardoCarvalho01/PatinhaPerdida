@@ -16,6 +16,8 @@ class HomePage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
+        
+        
         backgroundColor: Color.fromARGB(255, 134, 195, 245),
       ),
       backgroundColor: Colors.lightGreen[100],
@@ -30,7 +32,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               },
-              icon: Icon(Icons.login), // Ícone de Login
+              icon: Icon(Icons.login), 
               label: Text('Login '),
             ),
             ElevatedButton.icon(
@@ -40,7 +42,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               },
-              icon: Icon(Icons.person_add), // Ícone de Registrar
+              icon: Icon(Icons.person_add), 
               label: Text('Registrar'),
             ),
             ElevatedButton.icon(
@@ -50,7 +52,7 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => FeedPage()),
                 );
               },
-              icon: Icon(Icons.feed), // Ícone de Feed de Notícias
+              icon: Icon(Icons.feed), 
               label: Text('Visitante'),
             ),
           ],

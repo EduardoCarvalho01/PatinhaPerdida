@@ -38,22 +38,22 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     try {
-      // Registra o usuário com e-mail e senha
+   
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
 
-      // Obtém o ID do usuário registrado
+     
       String userId = userCredential.user!.uid;
 
-      // Salva o nome do usuário no Firestore
+      
       await _firestore.collection('users').doc(userId).set({
         'name': _nameController.text.trim(),
       });
 
-      // Navega para a próxima tela após o registro bem-sucedido
+      
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => FeedPage()));
     } catch (e) {
