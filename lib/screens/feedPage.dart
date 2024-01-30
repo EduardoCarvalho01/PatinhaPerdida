@@ -54,9 +54,9 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
+        title: Center(
           child: Text(
-            'Feed',
+            'Feed - Bem vindo: ${_userName.isNotEmpty ? _userName : _user?.displayName ?? "Visitante"}',
             style: TextStyle(color: Colors.black),
           ),
         ),
